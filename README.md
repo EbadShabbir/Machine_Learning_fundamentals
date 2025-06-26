@@ -7,6 +7,7 @@ A comprehensive Python library for fundamental matrix operations including resha
 - **Matrix Reshaping**: Transform matrices into different dimensions while preserving element order
 - **Matrix-Vector Multiplication**: Compute dot product between matrices and vectors with dimension validation
 - **Matrix Transposition**: Convert rows to columns and vice versa efficiently
+- **Matrix Mean Calculation**: Calculate mean values by row or column
 - **Robust Error Handling**: Comprehensive validation for incompatible operations
 - **Type Hints**: Full type annotation support for better code clarity
 
@@ -68,6 +69,22 @@ Transposes a matrix by swapping rows and columns using element mapping.
 **Returns:**
 - `list[list[int|float]]`: Transposed matrix
 
+### 4. `calculate_matrix_mean(matrix, mode)`
+
+Calculates the mean of a matrix by row or column using pure Python implementation.
+
+**Algorithm:**
+1. **Input Validation**: Checks for empty matrix and valid mode
+2. **Row Mode**: For each row, sums all elements and divides by number of columns
+3. **Column Mode**: For each column, extracts values using list comprehension and calculates mean
+
+**Parameters:**
+- `matrix` (list[list[float]]): Input matrix for mean calculation
+- `mode` (str): Either 'row' or 'column' to specify calculation direction
+
+**Returns:**
+- `list[float]`: List of calculated means, or empty list `[]` for invalid input
+
 
 ## ⚡ Performance Characteristics
 
@@ -76,6 +93,7 @@ Transposes a matrix by swapping rows and columns using element mapping.
 | Matrix Reshape | O(m × n) | O(m × n) |
 | Matrix-Vector Multiplication | O(m × n) | O(m) |
 | Matrix Transpose | O(m × n) | O(m × n) |
+| Matrix Mean Calculation | O(m × n) | O(max(m, n)) |
 
 Where `m` = number of rows, `n` = number of columns
 
@@ -84,9 +102,7 @@ Where `m` = number of rows, `n` = number of columns
 - **Reshape**: Returns empty list `[]` if reshaping is impossible due to incompatible dimensions
 - **Matrix-Vector Multiplication**: Returns `-1` if matrix columns don't match vector length
 - **Transpose**: Handles empty matrices gracefully with proper dimension checking
-
-## 📝 Source Code
-
+- **Mean Calculation**: Returns empty list `[]` for invalid input and prints error for invalid mode
 
 
 
