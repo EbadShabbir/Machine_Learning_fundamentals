@@ -8,11 +8,12 @@ A comprehensive Python library for fundamental matrix operations including resha
 - **Matrix-Vector Multiplication**: Compute dot product between matrices and vectors with dimension validation
 - **Matrix Transposition**: Convert rows to columns and vice versa efficiently
 - **Matrix Mean Calculation**: Calculate mean values by row or column
+- **Matrix Multiplication with Scalar**:Multiplying the scalar by the matrix
 - **Robust Error Handling**: Comprehensive validation for incompatible operations
 - **Type Hints**: Full type annotation support for better code clarity
 
 ## 📋 Requirements
-
+- install numpy 
 
 ## 🔧 Installation
 
@@ -84,7 +85,21 @@ Calculates the mean of a matrix by row or column using pure Python implementatio
 
 **Returns:**
 - `list[float]`: List of calculated means, or empty list `[]` for invalid input
+### 5. `calculate_scalar_multiplication(matrix,scalar)`
 
+Calculates the mulitplication  of a matrix by scalar using pure Python implementation.
+
+**Algorithm:**
+1. **Flatten**: First flatten the matrix
+2. **Scalar Multiply**: Multiply each element with the scaler and then append it a new list
+3. **Unflatten**: Now unflatten the recieved the matrix and then add that as result
+
+**Parameters:**
+- `matrix` (list[list[float]]): Input matrix for  calculation
+- `scalar` (int):For the value of scalar
+
+**Returns:**
+- `matrix`: Matrix of scaler multiplied 
 
 ## ⚡ Performance Characteristics
 
@@ -94,7 +109,7 @@ Calculates the mean of a matrix by row or column using pure Python implementatio
 | Matrix-Vector Multiplication | O(m × n) | O(m) |
 | Matrix Transpose | O(m × n) | O(m × n) |
 | Matrix Mean Calculation | O(m × n) | O(max(m, n)) |
-
+| Matrix Scalar Multiplication | O(m x n) | O(m x n)
 Where `m` = number of rows, `n` = number of columns
 
 ## 🔍 Error Handling
@@ -103,6 +118,7 @@ Where `m` = number of rows, `n` = number of columns
 - **Matrix-Vector Multiplication**: Returns `-1` if matrix columns don't match vector length
 - **Transpose**: Handles empty matrices gracefully with proper dimension checking
 - **Mean Calculation**: Returns empty list `[]` for invalid input and prints error for invalid mode
+- **Scalar Multiplication**:No such case
 
 
 
