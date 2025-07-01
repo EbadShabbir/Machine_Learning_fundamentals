@@ -8,16 +8,13 @@ A comprehensive Python library for fundamental matrix operations including resha
 - **Matrix-Vector Multiplication**: Compute dot product between matrices and vectors with dimension validation
 - **Matrix Transposition**: Convert rows to columns and vice versa efficiently
 - **Matrix Mean Calculation**: Calculate mean values by row or column
-- **Matrix Multiplication with Scalar**:Multiplying the scalar by the matrix
+- **Matrix Multiplication with Scalar**: Multiplying the scalar by the matrix
+- **Eigenvalues Calculation**: Compute eigenvalues for 2x2 matrices using characteristic equation
 - **Robust Error Handling**: Comprehensive validation for incompatible operations
 - **Type Hints**: Full type annotation support for better code clarity
 
 ## 📋 Requirements
-- install numpy 
-
-## 🔧 Installation
-
-Simply download the script and import the functions into your project:
+- Install numpy 
 
 
 ## 📚 Functions Documentation
@@ -39,7 +36,6 @@ Reshapes a 2D matrix into a new shape while maintaining the same total number of
 **Returns:**
 - `list[list[int|float]]`: Reshaped matrix, or empty list `[]` if reshaping is impossible
 
-
 ### 2. `matrix_dot_vector(a, b)`
 
 Performs matrix-vector multiplication (dot product) with comprehensive dimension checking.
@@ -54,7 +50,6 @@ Performs matrix-vector multiplication (dot product) with comprehensive dimension
 
 **Returns:**
 - `list[int|float]`: Result vector of length m, or `-1` if dimensions are incompatible
-
 
 ### 3. `transpose_matrix(a)`
 
@@ -85,31 +80,55 @@ Calculates the mean of a matrix by row or column using pure Python implementatio
 
 **Returns:**
 - `list[float]`: List of calculated means, or empty list `[]` for invalid input
-### 5. `calculate_scalar_multiplication(matrix,scalar)`
 
-Calculates the mulitplication  of a matrix by scalar using pure Python implementation.
+### 5. `calculate_scalar_multiplication(matrix, scalar)`
+
+Calculates the multiplication of a matrix by scalar using pure Python implementation.
 
 **Algorithm:**
 1. **Flatten**: First flatten the matrix
-2. **Scalar Multiply**: Multiply each element with the scaler and then append it a new list
-3. **Unflatten**: Now unflatten the recieved the matrix and then add that as result
+2. **Scalar Multiply**: Multiply each element with the scalar and append to new list
+3. **Unflatten**: Convert flattened result back to matrix structure
 
 **Parameters:**
-- `matrix` (list[list[float]]): Input matrix for  calculation
-- `scalar` (int):For the value of scalar
+- `matrix` (list[list[float]]): Input matrix for calculation
+- `scalar` (int): Scalar multiplier value
 
 **Returns:**
-- `matrix`: Matrix of scaler multiplied 
+- `list[list[float]]`: Resulting matrix after scalar multiplication
+
+### 6. `eigenvalues_calculation(A)`
+
+Calculates eigenvalues of a 2x2 matrix using the characteristic equation.
+
+**Algorithm:**
+1. **Matrix Elements Extraction**: Extracts elements a, b, c, d from 2x2 matrix
+2. **Trace and Determinant**: Computes trace (`tr = a + d`) and determinant (`det = a*d - b*c`)
+3. **Discriminant Calculation**: Computes `D = tr² - 4*det`
+4. **Eigenvalues Calculation**:
+   - `λ₁ = (tr + √D)/2`
+   - `λ₂ = (tr - √D)/2`
+
+**Parameters:**
+- `A` (list[list[float]]): Input 2x2 matrix
+
+**Returns:**
+- `list[float]`: List of eigenvalues [λ₁, λ₂]
+
+**Limitations:**
+- Currently only supports 2x2 matrices
 
 ## ⚡ Performance Characteristics
 
 | **Operation** | **Time Complexity** | **Space Complexity** |
-|---------------|-------------------|-------------------|
+|---------------|---------------------|----------------------|
 | Matrix Reshape | O(m × n) | O(m × n) |
 | Matrix-Vector Multiplication | O(m × n) | O(m) |
 | Matrix Transpose | O(m × n) | O(m × n) |
 | Matrix Mean Calculation | O(m × n) | O(max(m, n)) |
-| Matrix Scalar Multiplication | O(m x n) | O(m x n)
+| Matrix Scalar Multiplication | O(m × n) | O(m × n) |
+| Eigenvalues Calculation | O(1) | O(1) |
+
 Where `m` = number of rows, `n` = number of columns
 
 ## 🔍 Error Handling
@@ -118,7 +137,10 @@ Where `m` = number of rows, `n` = number of columns
 - **Matrix-Vector Multiplication**: Returns `-1` if matrix columns don't match vector length
 - **Transpose**: Handles empty matrices gracefully with proper dimension checking
 - **Mean Calculation**: Returns empty list `[]` for invalid input and prints error for invalid mode
-- **Scalar Multiplication**:No such case
+- **Scalar Multiplication**: No error cases (handles all valid matrices)
+- **Eigenvalues Calculation**: Requires strictly 2x2 matrix input (undefined behavior for other sizes)
+
+
 
 
 
