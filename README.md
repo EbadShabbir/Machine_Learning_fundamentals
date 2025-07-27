@@ -12,7 +12,7 @@ A comprehensive Python library for fundamental matrix operations including resha
 - **Eigenvalues Calculation**: Compute eigenvalues for 2x2 matrices using characteristic equation
 - **Robust Error Handling**: Comprehensive validation for incompatible operations
 - **Type Hints**: Full type annotation support for better code clarity
-
+- **2x2 Matrix Inverse**: Calculating Inverse of 2*2 matrix
 ## 📋 Requirements
 ```
 pip install numpy
@@ -209,12 +209,23 @@ def eigenvalues_calculation(A: List[List[float]]) -> List[float]:
     # Calculate discriminant
     discriminant = trace**2 - 4 * determinant
     
-    # Calculate eigenvalues using quadratic formula
+    # Calculate eigenvalues using the quadratic formula
     sqrt_discriminant = discriminant**0.5
     lambda1 = (trace + sqrt_discriminant) / 2
     lambda2 = (trace - sqrt_discriminant) / 2
     
     return [lambda1, lambda2]
+import numpy as np
+def inverse_2x2(matrix: list[list[float]]) -> list[list[float]]:
+    M1=np.array(matrix)
+    try:
+        inverse1=np.linalg.inv(M1)
+        inverse=inverse1.tolist()
+    except np.linalg.LinAlgError:
+        return None
+        
+
+	return inverse
 ```
 
 ## 📚 Functions Documentation
@@ -242,7 +253,7 @@ Performs matrix-vector multiplication (dot product) with comprehensive dimension
 
 **Algorithm:**
 1. **Dimension Validation**: Ensures matrix columns match vector length
-2. **Dot Product Computation**: For each matrix row, computes sum of element-wise products
+2. **Dot Product Computation**: For each matrix row, compute the sum of element-wise products
 
 **Parameters:**
 - `a` (list[list[int|float]]): Input matrix (m×n)
@@ -267,12 +278,12 @@ Transposes a matrix by swapping rows and columns using element mapping.
 
 ### 4. `calculate_matrix_mean(matrix, mode)`
 
-Calculates the mean of a matrix by row or column using pure Python implementation.
+Calculates the mean of a matrix by row or column using a pure Python implementation.
 
 **Algorithm:**
-1. **Input Validation**: Checks for empty matrix and valid mode
-2. **Row Mode**: For each row, sums all elements and divides by number of columns
-3. **Column Mode**: For each column, extracts values using list comprehension and calculates mean
+1. **Input Validation**: Checks for an empty matrix and a valid mode
+2. **Row Mode**: For each row, sums all elements and divides by the number of columns
+3. **Column Mode**: For each column, extracts values using list comprehension and calculates the mean
 
 **Parameters:**
 - `matrix` (list[list[float]]): Input matrix for mean calculation
@@ -283,11 +294,11 @@ Calculates the mean of a matrix by row or column using pure Python implementatio
 
 ### 5. `calculate_scalar_multiplication(matrix, scalar)`
 
-Calculates the multiplication of a matrix by scalar using pure Python implementation.
+Calculates the multiplication of a matrix by a scalar using a pure Python implementation.
 
 **Algorithm:**
 1. **Flatten**: First flatten the matrix
-2. **Scalar Multiply**: Multiply each element with the scalar and append to new list
+2. **Scalar Multiply**: Multiply each element by the scalar and append to a new list
 3. **Unflatten**: Convert flattened result back to matrix structure
 
 **Parameters:**
@@ -317,6 +328,14 @@ Calculates eigenvalues of a 2x2 matrix using the characteristic equation.
 
 **Limitations:**
 - Currently only supports 2x2 matrices
+### 7. '2*2 matrix inverse calculation'
+
+Calculating inverse of a 2*2 matrix using numpy 
+
+**Algorithm:**
+1. **Converting the matrix into a numpy array**:using np.array
+2. **Using numpy library to convert to inverse**:using np.linalg.inv()
+3. **Using error handling for the inverse not possible case**:using try and except
 
 ## ⚡ Performance Characteristics
 
@@ -328,6 +347,7 @@ Calculates eigenvalues of a 2x2 matrix using the characteristic equation.
 | Matrix Mean Calculation | O(m × n) | O(max(m, n)) |
 | Matrix Scalar Multiplication | O(m × n) | O(m × n) |
 | Eigenvalues Calculation | O(1) | O(1) |
+| 2x2 Matrix inverse Calculation |  O(1) | O(1)  |
 
 Where `m` = number of rows, `n` = number of columns
 
@@ -338,5 +358,6 @@ Where `m` = number of rows, `n` = number of columns
 - **Transpose**: Handles empty matrices gracefully with proper dimension checking
 - **Mean Calculation**: Returns empty list `[]` for invalid input and prints error for invalid mode
 - **Scalar Multiplication**: No error cases (handles all valid matrices)
-- **Eigenvalues Calculation**: Requires strictly 2x2 matrix input (undefined behavior for other sizes)
+- **Eigenvalues Calculation**: Requires a strictly 2x2 matrix input (undefined behavior for other sizes)
+- **2x2 Matrix inverse**: Matrix should be invertibe
 ```
